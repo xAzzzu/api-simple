@@ -1,0 +1,47 @@
+.logo {
+    width: 120px;
+    height: 31px;
+    background: url("../img/itssgt.png");
+    background-size: 120px 31px;
+    margin: 16px 30px 16px 0;
+    float: left;
+}
+
+.ant-layout-header, .ant-menu-dark  {
+    background: #488828 !important;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+    background-color: #274c15;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: #efffe6 !important;
+}
+
+.ant-menu-item-selected {
+    color: #34b31e;
+}
+
+.ant-menu-vertical .ant-menu-item::after, .ant-menu-vertical-left .ant-menu-item::after, .ant-menu-vertical-right .ant-menu-item::after, .ant-menu-inline .ant-menu-item::after {
+    border-right: 3px solid #42a72b !important;
+}
+
+.ant-menu-item:hover, .ant-menu-item-active, .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open, .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+    color: #34b31e;
+}
+
+.ant-menu-item-selected > a, .ant-menu-item-selected > a:hover {
+    color: #34b31e;
+}
+
+.ant-menu-submenu-vertical > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after, .ant-menu-submenu-vertical-left > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after, .ant-menu-submenu-vertical-right > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after, .ant-menu-submenu-inline > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after, .ant-menu-submenu-vertical > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before, .ant-menu-submenu-vertical-left > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before, .ant-menu-submenu-vertical-right > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before, .ant-menu-submenu-inline > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before {
+    background: -webkit-gradient(linear, left top, right top, from(#34b31e), to(#34b31e));
+    background: -webkit-linear-gradient(left, #34b31e, #34b31e);
+    background: linear-gradient(to right, #34b31e, #34b31e);
+}
+
+.ant-menu a:hover {
+    color: #34b31e;
+}
+
