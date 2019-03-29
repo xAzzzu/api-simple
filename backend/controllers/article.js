@@ -11,8 +11,8 @@ function getArticle(req, res){
 }
 
 function updateArticle(req, res) {
-    if (req.body.content !== undefined) {
-        return articleService.updateArticle({content: req.body.content}, req.params.id)
+    if (req.body.content !== undefined && req.body.title !== undefined) {
+        return articleService.updateArticle({content: req.body.content, title: req.body.title}, req.params.id)
             .then(() => res.send({success: true}));
 
     } else {
@@ -21,8 +21,8 @@ function updateArticle(req, res) {
 }
 
 function addArticle(req, res) {
-    if (req.body.content !== undefined ) {
-        return articleService.addArticle({content: req.body.content, authorId: req.user.id})
+    if (req.body.content !== undefined && req.body.title !== undefined) {
+        return articleService.addArticle({content: req.body.content, title: req.body.title, authorId: req.user.id})
             .then(() => res.send({success: true}));
     } else {
         res.status(500).send({message: 'Missing Parameters content!'});

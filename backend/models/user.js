@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-      User.hasMany(models.Order, {foreignKey: 'user_id'});
   };
   return User;
 };

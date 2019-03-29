@@ -11,6 +11,9 @@ module.exports = {
       authorId: {
         type: Sequelize.INTEGER
       },
+      title: {
+        type: Sequelize.STRING
+      },
       content: {
         type: Sequelize.TEXT
       },

@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tinymce/tinymce-react": "^3.0.1",
     "antd": "^3.13.6",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "tinymce": "^5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

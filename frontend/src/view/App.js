@@ -10,6 +10,8 @@ import Fakten from './content/fakten'
 import FAQ from './content/faq'
 import AktuelleProjekte from './content/aktuelleProjekte'
 import Info from './content/info'
+import Login from './admin/login'
+import Article from './admin/article'
 
 const {SubMenu} = Menu;
 const {Header, Content, Sider} = Layout;
@@ -38,9 +40,6 @@ class App extends Component {
                                 defaultOpenKeys={['sub1', 'sub2', 'sub3']}
                                 style={{height: '100%', borderRight: 0}}
                             >
-                                <SubMenu key="sub1" title={<span>Technisch</span>}>
-                                    <Menu.Item key="1"><Link to="/technisch/baukasten">Baukasten</Link></Menu.Item>
-                                </SubMenu>
                                 <SubMenu key="sub2" title={<span>Inhalte</span>}>
                                     <Menu.Item key="5"><Link to="/inhalte/beispiel-projekt">Beispiel Projekt</Link></Menu.Item>
                                     <Menu.Item key="6"><Link to="/inhalte/newsletter">Newsletter</Link></Menu.Item>
@@ -65,6 +64,10 @@ class App extends Component {
                                 <Route path="/inhalte/faq" component={FAQ}/>
                                 <Route path="/recherche/aktuelle-projekte" component={AktuelleProjekte}/>
                                 <Route path="/recherche/fakten" component={Fakten}/>
+
+
+                                <Route path="/admin/login" component={Login}/>
+                                <Route path="/admin/articles" component={Article}/>
                             </Content>
                         </Layout>
                     </Layout>

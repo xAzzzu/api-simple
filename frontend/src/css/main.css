@@ -45,3 +45,16 @@
     color: #34b31e;
 }
 
+textarea{
+    height: 600px;
+}
+
+.ant-btn-primary {
+    background-color: #488828;
+    border-color: #488828;
+}
+
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+    background-color: #274c15;
+    border-color: #274c15;
+}

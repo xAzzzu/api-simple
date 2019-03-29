@@ -27,7 +27,6 @@ function login(req, res){
 }
 
 function register(req, res){
-	console.log(req.body);
     if(req.body.login !== undefined || req.body.password !== undefined){
         return userService.getUserByLogin(req.body.login || '')
             .then(exists => {
