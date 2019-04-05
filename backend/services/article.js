@@ -15,9 +15,18 @@ const getAllArticles = () => {
         .then(sequelize.getValues);
 }
 
+const deleteArticle = (id) => {
+    return Article.destroy({
+        where: {
+            id
+        }
+    });
+};
+
 module.exports = {
 	addArticle,
 	getAllArticles,
     getArticle,
-    updateArticle
+    updateArticle,
+    deleteArticle
 }

@@ -1,132 +1,60 @@
-import Config from "../config"
+import Config from "../config";
+import APIFetch from "./APIFetch";
 
 export default class ApiConnector {
     static loginUser(creds) {
         let config = {
-            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: `{"login": "${creds.username}", "password": "${creds.password}"}`
-
         };
-        return fetch(Config.apiServer +'/login', config)
-            .then(response =>
-                response.json()
-                    .then(user => ({
-                        user,
-                        response
-                    }))
-            ).then(({
-                        user,
-                        response
-                    }) => {
-                if (!response.ok) {
-                    return Promise.reject(user);
-                } else {
-                    if(user.success === false){
-                        return Promise.reject(user.message);
-                    } else {
-                        localStorage.setItem('id_token', user.data.token);
-                        return Promise.resolve();
-                    }
-                }
-            }).catch(err => {
-                console.log("Error: ", err);
-                return Promise.reject(err);
-            });
+        return APIFetch.post(Config.apiServer + '/login', config).then((response) => {
+            console.log(response);
+            localStorage.setItem('id_token', response.data.token);
+        });
     }
 
     static addArticle(article) {
         let config = {
-            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'authorization': localStorage.getItem('id_token')
             },
-            body: `{"title": "${article.title}", "content": "${article.content}"}`
-
+            body: JSON.stringify(article)
         };
-        return fetch(Config.apiServer +'/article', config)
-            .then(response =>
-                response.json()
-                    .then(article => ({
-                        article,
-                        response
-                    }))
-            ).then(({
-                        article,
-                        response
-                    }) => {
-                if (!response.ok) {
-                    return Promise.reject(article);
-                } else {
-                    return Promise.resolve(article);
-                }
-            }).catch(err => {
-                console.log("Error: ", err);
-                return Promise.reject(err);
-            });
+        return APIFetch.post(Config.apiServer + '/article', config);
     }
 
     static updateArticle(article) {
         let config = {
-            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'authorization': localStorage.getItem('id_token')
             },
-            body: `{"title": "${article.title}", "content": "${article.content}"}`
+            body: JSON.stringify(article)
         };
-        return fetch(Config.apiServer +'/article/'+article.id, config)
-            .then(response =>
-                response.json()
-                    .then(article => ({
-                        article,
-                        response
-                    }))
-            ).then(({
-                        article,
-                        response
-                    }) => {
-                if (!response.ok) {
-                    return Promise.reject(article);
-                } else {
-                    return Promise.resolve(article);
-                }
-            }).catch(err => {
-                console.log("Error: ", err);
-                return Promise.reject(err);
-            });
+        return APIFetch.patch(Config.apiServer + '/article/' + article.id, config);
     }
 
     static getArticles() {
-        let config = {
-            method: 'GET'
-        };
-        return fetch(Config.apiServer +'/article', config)
-            .then(response =>
-                response.json()
-                    .then(articles => ({
-                        articles,
-                        response
-                    }))
-            ).then(({
-                        articles,
-                        response
-                    }) => {
-                if (!response.ok) {
-                    return Promise.reject(articles);
-                } else {
-                    return Promise.resolve(articles);
-                }
-            }).catch(err => {
-                console.log("Error: ", err);
-                return Promise.reject(err);
-            });
+        return APIFetch.get(Config.apiServer + '/article');
     }
 
-    static isAuthenticated(){
+    static getArticle(id) {
+        return APIFetch.get(Config.apiServer + '/article/' +id);
+    }
+
+    static deleteArticle(id) {
+        let config = {
+            headers: {
+                'authorization': localStorage.getItem('id_token')
+            }
+        };
+        return APIFetch.delete(Config.apiServer + '/article/' +id, config);
+    }
+
+    static isAuthenticated() {
         return localStorage.getItem('id_token') !== null;
     }
 }

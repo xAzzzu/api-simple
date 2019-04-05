@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {List, Button, Drawer, Skeleton, Col, Row, Input, notification, Icon} from 'antd';
+import {List, Button, Drawer, Skeleton, Col, Row, Input, notification, Icon, Modal} from 'antd';
 import ApiConnector from "../../utils/ApiConnector"
 import {Redirect} from "react-router-dom";
 import { Editor } from '@tinymce/tinymce-react';
-import tinymce from "tinymce";
 
+const confirm = Modal.confirm;
 
 const DescriptionItem = ({ title, content }) => (
     <div
@@ -61,8 +61,20 @@ class Article extends Component {
         this.showDrawer();
     }
 
-    deleteArticle(id) {
-        console.log(id);
+    deleteArticle(article) {
+        const _this = this;
+        confirm({
+            title: 'Möchtest du diesen Artikel löschen ?',
+            content: 'Title: '+ article.title,
+            okText: 'Yes',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+                ApiConnector.deleteArticle(article.id).then(() => {
+                    _this.fetchArticleList();
+                });
+            },
+        });
     }
 
     componentDidMount(){
@@ -138,7 +150,7 @@ class Article extends Component {
 
         return (
             <div>
-                <Button type="primary" onClick={() => {this.addArticle()}} size="medium">Artikel hinzufügen</Button>
+                <Button type="primary" onClick={() => {this.addArticle()}}>Artikel hinzufügen</Button>
                 <List
                     itemLayout="vertical"
                     size="large"
@@ -152,7 +164,7 @@ class Article extends Component {
                         }
                         return (<List.Item
                             key={item.title}
-                            actions={[<span onClick={() => {this.editArticle(item)}}><Icon type="edit" /> Editieren</span>, <span><Icon type="delete" /> Löschen</span>]}
+                            actions={[<span onClick={() => {this.editArticle(item)}}><Icon type="edit" /> Editieren</span>, <span onClick={() => {this.deleteArticle(item)}}><Icon type="delete"/> Löschen</span>]}
                         >
                             <List.Item.Meta
                                 title={item.title}
@@ -192,11 +204,11 @@ class Article extends Component {
                     <Row>
                         <Col span={12}>
                             {this.state.mode === "create" &&
-                            <Button type="primary" size="medium"
+                            <Button type="primary"
                                     onClick={this.handleAddArticle}>Artikel hinzufügen</Button>
                             }
                             {this.state.mode === "edit" &&
-                            <Button type="primary" size="medium"
+                            <Button type="primary"
                                     onClick={
                                         () => {this.handleUpdateArticle()}
                                     }>Artikel editieren</Button>

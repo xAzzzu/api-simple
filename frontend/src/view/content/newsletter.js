@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link, Redirect} from "react-router-dom";
-import {List, Avatar, Icon, Skeleton} from 'antd';
+import {Link} from "react-router-dom";
+import {List, Icon, Skeleton} from 'antd';
 import ApiConnector from "../../utils/ApiConnector";
 
 
@@ -50,7 +50,7 @@ class Newsletter extends Component {
                             return (<Skeleton active/>);
                         }
                         return (<List.Item
-                            actions={[<span><Icon type="read" /> Lesen</span>]}
+                            actions={[<span><Link to={"/inhalte/artikel/"+ item.id}><Icon type="read" /> Lesen</Link></span>]}
                             key={item.title}
                         >
                             <List.Item.Meta

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Layout, Menu, Breadcrumb, Icon,
+    Layout, Menu
 } from 'antd';
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import Baukasten from './content/baukasten'
@@ -10,6 +10,7 @@ import Fakten from './content/fakten'
 import FAQ from './content/faq'
 import AktuelleProjekte from './content/aktuelleProjekte'
 import Info from './content/info'
+import Artikel from './content/artikel'
 import Login from './admin/login'
 import Article from './admin/article'
 
@@ -54,12 +55,13 @@ class App extends Component {
                         </Sider>
                         <Layout style={{padding: '24px 24px 24px'}}>
                             <Content style={{
-                                background: '#fff', padding: 24, margin: 0, minHeight: 280,
+                                background: '#fff', padding: 24, margin: 0, minHeight: 280, overflowX: 'auto'
                             }}
                             >
                                 <Route path="/technisch/baukasten" component={Baukasten}/>
                                 <Route path="/inhalte/beispiel-projekt" component={BeispielProjekt}/>
                                 <Route path="/inhalte/newsletter" component={Newsletter}/>
+                                <Route path="/inhalte/artikel/:id" component={Artikel}/>
                                 <Route path="/inhalte/info" component={Info}/>
                                 <Route path="/inhalte/faq" component={FAQ}/>
                                 <Route path="/recherche/aktuelle-projekte" component={AktuelleProjekte}/>

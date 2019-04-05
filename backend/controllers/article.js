@@ -6,9 +6,15 @@ function getAllArticles(req, res){
 }
 
 function getArticle(req, res){
-    return articleService.getArticle(req.user.id)
+    return articleService.getArticle(req.params.id)
         .then(data => res.send(data));
 }
+
+function deleteArticle(req, res){
+    return articleService.deleteArticle(req.params.id)
+        .then(data => res.send({success: true}));
+}
+
 
 function updateArticle(req, res) {
     if (req.body.content !== undefined && req.body.title !== undefined) {
@@ -33,5 +39,6 @@ module.exports = {
     getArticle,
     getAllArticles,
     addArticle,
-    updateArticle
+    updateArticle,
+    deleteArticle
 }

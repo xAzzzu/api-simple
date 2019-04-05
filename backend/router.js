@@ -16,4 +16,5 @@ module.exports.set = (app) => {
 	app.get('/article/:id', articleController.getArticle);
 	app.post('/article', authMiddleware.checkAuth, articleController.addArticle);
 	app.patch('/article/:id', authMiddleware.checkAuth, articleController.updateArticle);
+	app.delete('/article/:id', authMiddleware.checkAuth, articleController.deleteArticle);
 };
