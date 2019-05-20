@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import {
     Layout, Menu
 } from 'antd';
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import Baukasten from './content/baukasten'
 import BeispielProjekt from './content/beispielProjekt'
 import Newsletter from './content/newsletter'
 import Fakten from './content/fakten'
 import FAQ from './content/faq'
+import Home from './content/home'
+import NotFoundPage from './error/notFoundPage'
 import AktuelleProjekte from './content/aktuelleProjekte'
 import Info from './content/info'
 import Artikel from './content/artikel'
@@ -58,18 +60,24 @@ class App extends Component {
                                 background: '#fff', padding: 24, margin: 0, minHeight: 280, overflowX: 'auto'
                             }}
                             >
-                                <Route path="/technisch/baukasten" component={Baukasten}/>
-                                <Route path="/inhalte/beispiel-projekt" component={BeispielProjekt}/>
-                                <Route path="/inhalte/newsletter" component={Newsletter}/>
-                                <Route path="/inhalte/artikel/:id" component={Artikel}/>
-                                <Route path="/inhalte/info" component={Info}/>
-                                <Route path="/inhalte/faq" component={FAQ}/>
-                                <Route path="/recherche/aktuelle-projekte" component={AktuelleProjekte}/>
-                                <Route path="/recherche/fakten" component={Fakten}/>
+                                <Switch>
+                                    <Route exact path="/" component={Home}/>
+
+                                    <Route path="/technisch/baukasten" component={Baukasten}/>
+                                    <Route path="/inhalte/beispiel-projekt" component={BeispielProjekt}/>
+                                    <Route exact path="/inhalte/newsletter" component={Newsletter}/>
+                                    <Route path="/inhalte/newsletter/:id" component={Artikel}/>
+                                    <Route path="/inhalte/info" component={Info}/>
+                                    <Route path="/inhalte/faq" component={FAQ}/>
+                                    <Route path="/recherche/aktuelle-projekte" component={AktuelleProjekte}/>
+                                    <Route path="/recherche/fakten" component={Fakten}/>
 
 
-                                <Route path="/admin/login" component={Login}/>
-                                <Route path="/admin/articles" component={Article}/>
+                                    <Route path="/admin/login" component={Login}/>
+                                    <Route path="/admin/articles" component={Article}/>
+
+                                    <Route component={NotFoundPage}/>
+                                </Switch>
                             </Content>
                         </Layout>
                     </Layout>

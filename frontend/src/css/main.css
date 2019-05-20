@@ -1,3 +1,6 @@
+::-moz-selection { background: rgba(105, 181, 66, 0.7); }
+::selection { background: rgba(105, 181, 66, 0.7); }
+
 .logo {
     width: 120px;
     height: 31px;
@@ -47,6 +50,34 @@
 
 textarea{
     height: 600px;
+}
+
+a {
+    color: #65b73b;
+}
+
+a:hover {
+    color: #4b862e;
+}
+
+a:active {
+    color: #39711c;
+}
+
+.ant-pagination-item-active {
+    border-color: #65b73b;
+}
+
+.ant-pagination-item-active a {
+    color: #65b73b;
+}
+
+.ant-pagination-item-active:focus, .ant-pagination-item-active:hover {
+    border-color: #7ad04e;
+}
+
+.ant-pagination-item-active:focus a, .ant-pagination-item-active:hover a {
+    color: #7ad04e;
 }
 
 .ant-btn-primary {

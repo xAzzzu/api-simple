@@ -50,7 +50,7 @@ class Newsletter extends Component {
                             return (<Skeleton active/>);
                         }
                         return (<List.Item
-                            actions={[<span><Link to={"/inhalte/artikel/"+ item.id}><Icon type="read" /> Lesen</Link></span>]}
+                            actions={[<span><Link to={"/inhalte/newsletter/"+ item.id}><Icon type="read" /> Lesen</Link></span>]}
                             key={item.title}
                         >
                             <List.Item.Meta
